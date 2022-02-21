@@ -11,22 +11,23 @@ jobs:
         uses: gsactions/commit-message-checker@v1
         with:
           pattern: "^(?!(fixup|squash)! )"
-          error: "Run `git rebase -i --autosquash origin/develop`."
+          error: "You cannot merge squash commits."
+          excludeTitle: true
           excludeDescription: true
           checkAllCommitMessages: true
+          accessToken: ${{ secrets.GITHUB_TOKEN }}
+      - name: Check Line Length
+        uses: gsactions/commit-message-checker@v1
+        with:
+          pattern: "^[^#].{74}"
+          excludeTitle: true
+          excludeDescription: true
+          error: "The maximum line length of 74 characters is exceeded."
+          checkAllCommitMessages: "true"
           accessToken: ${{ secrets.GITHUB_TOKEN }}
       - name: Check Commit Type
         uses: gsactions/commit-message-checker@v1
         with:
           pattern: '\[[^]]+\] .+$'
           error: 'Your first line has to contain a commit type like "[BUGFIX]".'
-          accessToken: ${{ secrets.GITHUB_TOKEN }}
-      - name: Check Line Length
-        uses: gsactions/commit-message-checker@v1
-        with:
-          pattern: "^[^#].{74}"
-          excludeDescription: true
-          excludeTitle: true
-          error: "The maximum line length of 74 characters is exceeded."
-          checkAllCommitMessages: "true"
           accessToken: ${{ secrets.GITHUB_TOKEN }}
