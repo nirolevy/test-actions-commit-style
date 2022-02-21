@@ -16,16 +16,16 @@ jobs:
           excludeDescription: true
           checkAllCommitMessages: true
           accessToken: ${{ secrets.GITHUB_TOKEN }}
-      - name: Check Line Length
+      - name: Check Commit Line Length
         uses: gsactions/commit-message-checker@v1
         with:
-          pattern: "^[^#].{74}"
+          pattern: "^[^#].{0,74}$"
+          error: "The maximum commit line length of 74 characters is exceeded."
           excludeTitle: true
           excludeDescription: true
-          error: "The maximum line length of 74 characters is exceeded."
-          checkAllCommitMessages: "true"
+          checkAllCommitMessages: true
           accessToken: ${{ secrets.GITHUB_TOKEN }}
-      - name: Check Commit Type
+      - name: Check Pull Request Type
         uses: gsactions/commit-message-checker@v1
         with:
           pattern: '\[[^]]+\] .+$'
