@@ -28,6 +28,6 @@ jobs:
       - name: Check Pull Request Type
         uses: gsactions/commit-message-checker@v1
         with:
-          pattern: '\\[[^\\]]+\\] .+$'
+          pattern: '\[[^\]]+\] .+$'
           error: 'Your pull request title must contain a type like "[BUGFIX]".'
           excludeDescription: true
