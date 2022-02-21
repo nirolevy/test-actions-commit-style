@@ -10,7 +10,7 @@ jobs:
       - name: Check Commit Not Squashable
         uses: gsactions/commit-message-checker@v1
         with:
-          pattern: "^((fixup)|(squash))! "
+          pattern: "^(?!(fixup)|(squash))! "
           error: "Run `git rebase -i --autosquash origin/develop`."
           checkAllCommitMessages: "true"
           accessToken: ${{ secrets.GITHUB_TOKEN }}
