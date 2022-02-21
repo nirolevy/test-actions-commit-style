@@ -28,6 +28,5 @@ jobs:
       - name: Check Pull Request Type
         uses: gsactions/commit-message-checker@v1
         with:
-          pattern: '\[[^]]+\] .+$'
-          flags: 'gm'
+          pattern: '\\[[^\\]]+\\] .+$'
           error: 'Your first line has to contain a commit type like "[BUGFIX]".'
