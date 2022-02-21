@@ -29,4 +29,5 @@ jobs:
         uses: gsactions/commit-message-checker@v1
         with:
           pattern: '\\[[^\\]]+\\] .+$'
-          error: 'Your first line has to contain a commit type like "[BUGFIX]".'
+          error: 'Your pull request title must contain a type like "[BUGFIX]".'
+          excludeDescription: true
