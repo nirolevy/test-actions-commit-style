@@ -1,0 +1,30 @@
+name: Check Commit Messages
+on:
+  pull_request:
+
+jobs:
+  check-commit-message:
+    name: Check Commit Message
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Commit Not Squashable
+        uses: gsactions/commit-message-checker@v1
+        with:
+          pattern: "^((fixup)|(squash))! "
+          error: "Run `git rebase -i --autosquash origin/develop`."
+          checkAllCommitMessages: "true"
+          accessToken: ${{ secrets.GITHUB_TOKEN }}
+      - name: Check Commit Type
+        uses: gsactions/commit-message-checker@v1
+        with:
+          pattern: '\[[^]]+\] .+$'
+          error: 'Your first line has to contain a commit type like "[BUGFIX]".'
+          checkAllCommitMessages: "true"
+          accessToken: ${{ secrets.GITHUB_TOKEN }}
+      - name: Check Line Length
+        uses: gsactions/commit-message-checker@v1
+        with:
+          pattern: "^[^#].{74}"
+          error: "The maximum line length of 74 characters is exceeded."
+          checkAllCommitMessages: "true"
+          accessToken: ${{ secrets.GITHUB_TOKEN }}
