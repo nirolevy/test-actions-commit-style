@@ -19,6 +19,7 @@ jobs:
         with:
           pattern: '\[[^]]+\] .+$'
           error: 'Your first line has to contain a commit type like "[BUGFIX]".'
+          flags: 'gm'
           checkAllCommitMessages: "true"
           accessToken: ${{ secrets.GITHUB_TOKEN }}
       - name: Check Line Length
